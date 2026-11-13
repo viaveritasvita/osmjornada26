@@ -1,0 +1,99 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+PRODID:-//OSM 2026//Jornada do Monitor Secreto//PT
+X-WR-CALNAME:Jornada da Ordem do Monitor Secreto — OSM 2026
+X-WR-TIMEZONE:America/Sao_Paulo
+BEGIN:VEVENT
+UID:s21-0@osmjornada26
+DTSTAMP:20261113T152200Z
+DTSTART:20261121T085000Z
+DTEND:20261121T093000Z
+SUMMARY:Chegada da equipe ritualística
+DESCRIPTION:Preparação do templo e organização dos materiais\nhttps://via
+ veritasvita.github.io/osmjornada26/
+URL:https://viaveritasvita.github.io/osmjornada26/
+END:VEVENT
+BEGIN:VEVENT
+UID:s21-1@osmjornada26
+DTSTAMP:20261113T152200Z
+DTSTART:20261121T093000Z
+DTEND:20261121T100500Z
+SUMMARY:Café da manhã e credenciamento
+DESCRIPTION:https://viaveritasvita.github.io/osmjornada26/
+URL:https://viaveritasvita.github.io/osmjornada26/
+END:VEVENT
+BEGIN:VEVENT
+UID:s21-2@osmjornada26
+DTSTAMP:20261113T152200Z
+DTSTART:20261121T100500Z
+DTEND:20261121T102000Z
+SUMMARY:Abertura do Conclave
+DESCRIPTION:https://viaveritasvita.github.io/osmjornada26/
+URL:https://viaveritasvita.github.io/osmjornada26/
+END:VEVENT
+BEGIN:VEVENT
+UID:s21-3@osmjornada26
+DTSTAMP:20261113T152200Z
+DTSTART:20261121T102000Z
+DTEND:20261121T113000Z
+SUMMARY:1º grau · Indução ao Monitor Secreto
+DESCRIPTION:https://viaveritasvita.github.io/osmjornada26/
+URL:https://viaveritasvita.github.io/osmjornada26/
+END:VEVENT
+BEGIN:VEVENT
+UID:s21-4@osmjornada26
+DTSTAMP:20261113T152200Z
+DTSTART:20261121T113000Z
+DTEND:20261121T114500Z
+SUMMARY:Reconfiguração do templo
+DESCRIPTION:https://viaveritasvita.github.io/osmjornada26/
+URL:https://viaveritasvita.github.io/osmjornada26/
+END:VEVENT
+BEGIN:VEVENT
+UID:s21-5@osmjornada26
+DTSTAMP:20261113T152200Z
+DTSTART:20261121T114500Z
+DTEND:20261121T130500Z
+SUMMARY:2º grau · Admissão como Príncipe da Ordem
+DESCRIPTION:https://viaveritasvita.github.io/osmjornada26/
+URL:https://viaveritasvita.github.io/osmjornada26/
+END:VEVENT
+BEGIN:VEVENT
+UID:s21-6@osmjornada26
+DTSTAMP:20261113T152200Z
+DTSTART:20261121T130500Z
+DTEND:20261121T132000Z
+SUMMARY:Reconfiguração do templo
+DESCRIPTION:https://viaveritasvita.github.io/osmjornada26/
+URL:https://viaveritasvita.github.io/osmjornada26/
+END:VEVENT
+BEGIN:VEVENT
+UID:s21-7@osmjornada26
+DTSTAMP:20261113T152200Z
+DTSTART:20261121T132000Z
+DTEND:20261121T152000Z
+SUMMARY:3º grau · Instalação do Supremo Governante
+DESCRIPTION:https://viaveritasvita.github.io/osmjornada26/
+URL:https://viaveritasvita.github.io/osmjornada26/
+END:VEVENT
+BEGIN:VEVENT
+UID:s21-8@osmjornada26
+DTSTAMP:20261113T152200Z
+DTSTART:20261121T152000Z
+DTEND:20261121T153000Z
+SUMMARY:Encerramento dos trabalhos
+DESCRIPTION:https://viaveritasvita.github.io/osmjornada26/
+URL:https://viaveritasvita.github.io/osmjornada26/
+END:VEVENT
+BEGIN:VEVENT
+UID:s21-9@osmjornada26
+DTSTAMP:20261113T152200Z
+DTSTART:20261121T153000Z
+DTEND:20261121T163000Z
+SUMMARY:Almoço fraternal
+DESCRIPTION:https://viaveritasvita.github.io/osmjornada26/
+URL:https://viaveritasvita.github.io/osmjornada26/
+END:VEVENT
+END:VCALENDAR
