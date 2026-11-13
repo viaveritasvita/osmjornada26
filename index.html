@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ágape — Jornada OSM · Ordem do Monitor Secreto 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cor-primaria: #8B0000;
+  --cor-primaria-escura: #5c0000;
+  --cor-fundo: #faf8f5;
+  --cor-card: #ffffff;
+  --cor-texto: #1a1a1a;
+  --cor-texto-sec: #555;
+  --cor-borda: #e0dcd6;
+  --cor-destaque: #c0392b;
+  --cor-sucesso: #27ae60;
+  --cor-aviso: #f39c12;
+  --sombra: 0 2px 12px rgba(0,0,0,.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--cor-fundo); color: var(--cor-texto);
+  min-height: 100vh; padding-bottom: 60px;
+}
+.nav {
+  background: var(--cor-primaria); color: #fff;
+  display: flex; justify-content: center; gap: 24px;
+  padding: 12px 16px; font-size: 14px; letter-spacing: .5px;
+}
+.nav a { color: #fff; text-decoration: none; opacity: .8; transition: opacity .2s; }
+.nav a:hover, .nav a.ativo { opacity: 1; font-weight: 600; }
+.masthead {
+  text-align: center; padding: 32px 16px 24px;
+  background: linear-gradient(180deg, var(--cor-primaria) 0%, var(--cor-primaria-escura) 100%);
+  color: #fff;
+}
+.masthead h1 {
+  font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700;
+  margin-bottom: 4px; letter-spacing: 1px;
+}
+.masthead .sub { font-size: 15px; opacity: .85; margin-bottom: 8px; }
+.masthead .data { font-size: 13px; opacity: .7; letter-spacing: .5px; }
+.container { max-width: 520px; margin: 0 auto; padding: 0 16px; }
+.card {
+  background: var(--cor-card); border: 1px solid var(--cor-borda);
+  border-radius: 12px; padding: 24px; margin-top: 20px;
+  box-shadow: var(--sombra);
+}
+.card h2 {
+  font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700;
+  color: var(--cor-primaria); margin-bottom: 16px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--cor-borda);
+}
+.step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--cor-primaria); color: #fff;
+  font-size: 13px; font-weight: 700; margin-right: 8px;
+}
+label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--cor-texto); }
+input[type="text"], input[type="tel"] {
+  width: 100%; padding: 12px; border: 1px solid var(--cor-borda);
+  border-radius: 8px; font-size: 15px; font-family: inherit;
+  background: var(--cor-fundo); transition: border-color .2s;
+}
+input:focus { outline: none; border-color: var(--cor-primaria); }
+.campo { margin-bottom: 14px; }
+.opcoes { display: flex; flex-direction: column; gap: 10px; }
+.opcao {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px; border: 2px solid var(--cor-borda);
+  border-radius: 10px; cursor: pointer; transition: all .2s;
+}
+.opcao:hover { border-color: var(--cor-primaria); }
+.opcao.selecionada { border-color: var(--cor-primaria); background: #fdf0f0; }
+.opcao input[type="radio"] { margin-top: 3px; accent-color: var(--cor-primaria); }
+.opcao-info { flex: 1; }
+.opcao-titulo { font-weight: 600; font-size: 15px; }
+.opcao-desc { font-size: 13px; color: var(--cor-texto-sec); margin-top: 2px; }
+.opcao-valor { font-family: 'Cinzel', serif; font-weight: 700; font-size: 18px; color: var(--cor-primaria); white-space: nowrap; }
+.resumo-box {
+  background: var(--cor-fundo); border: 1px solid var(--cor-borda);
+  border-radius: 8px; padding: 14px; margin-bottom: 14px;
+}
+.resumo-linha { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px; }
+.resumo-total { font-weight: 700; font-size: 16px; border-top: 1px solid var(--cor-borda); padding-top: 8px; margin-top: 8px; }
+.aviso-centavos {
+  font-size: 12px; color: var(--cor-texto-sec);
+  background: #fff8e1; border: 1px solid #ffe082;
+  border-radius: 6px; padding: 10px; margin-bottom: 14px;
+  line-height: 1.5;
+}
+.btn {
+  display: block; width: 100%; padding: 14px;
+  border: none; border-radius: 10px;
+  font-size: 16px; font-weight: 700; font-family: inherit;
+  cursor: pointer; transition: all .2s; text-align: center;
+}
+.btn-primario { background: var(--cor-primaria); color: #fff; }
+.btn-primario:hover { background: var(--cor-primaria-escura); }
+.btn-primario:disabled { background: #ccc; cursor: not-allowed; }
+.btn-secundario { background: transparent; color: var(--cor-primaria); border: 2px solid var(--cor-primaria); margin-top: 10px; }
+.btn-secundario:hover { background: #fdf0f0; }
+.btn-sucesso { background: var(--cor-sucesso); color: #fff; }
+.btn-sucesso:hover { background: #219a52; }
+.pix-box {
+  background: #f0fdf4; border: 2px solid var(--cor-sucesso);
+  border-radius: 10px; padding: 18px; text-align: center; margin-bottom: 14px;
+}
+.pix-label { font-size: 12px; color: var(--cor-texto-sec); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.pix-valor { font-family: 'Cinzel', serif; font-size: 28px; font-weight: 700; color: var(--cor-primaria); }
+.pix-chave-box {
+  background: var(--cor-fundo); border: 1px solid var(--cor-borda);
+  border-radius: 8px; padding: 12px; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.pix-chave-box code {
+  flex: 1; font-size: 12px; word-break: break-all;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+.btn-copiar {
+  padding: 8px 14px; border: 1px solid var(--cor-borda);
+  border-radius: 6px; background: #fff; font-size: 13px;
+  cursor: pointer; white-space: nowrap; transition: all .2s;
+}
+.btn-copiar:hover { background: var(--cor-fundo); }
+.btn-copiar.copiado { background: var(--cor-sucesso); color: #fff; border-color: var(--cor-sucesso); }
+.info-pix { font-size: 13px; color: var(--cor-texto-sec); line-height: 1.5; }
+.info-pix strong { color: var(--cor-texto); }
+.oculto { display: none !important; }
+.footer {
+  text-align: center; padding: 24px 16px;
+  font-size: 12px; color: var(--cor-texto-sec);
+}
+/* Programação */
+.prog-item {
+  display: flex; gap: 12px; padding: 10px 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+.prog-item:last-child { border-bottom: none; }
+.prog-hora {
+  font-family: ui-monospace, monospace; font-size: 13px;
+  color: var(--cor-primaria); font-weight: 600;
+  min-width: 90px; white-space: nowrap;
+}
+.prog-desc { font-size: 14px; line-height: 1.4; }
+.prog-grau { font-weight: 600; color: var(--cor-primaria); }
+.prog-nota { font-size: 12px; color: var(--cor-texto-sec); font-style: italic; }
+.badge-pago {
+  display: inline-block; background: var(--cor-sucesso); color: #fff;
+  font-size: 11px; font-weight: 700; padding: 2px 8px;
+  border-radius: 4px; text-transform: uppercase; letter-spacing: .5px;
+}
+.secao-pagina { }
+#secao-agape, #secao-programacao { }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#" class="ativo" onclick="mostrarSecao('agape'); return false;">Ágape</a>
+  <a href="#" onclick="mostrarSecao('programacao'); return false;">Programação</a>
+</nav>
+
+<div class="masthead">
+  <h1>ORDEM DO MONITOR SECRETO</h1>
+  <div class="sub">Conclave Bom Jesus n.º 5</div>
+  <div class="data">Jornada de Graus · 21 de novembro de 2026 · Cuiabá</div>
+</div>
+
+<!-- ===== SEÇÃO ÁGAPE ===== -->
+<div id="secao-agape" class="container secao-pagina">
+
+  <!-- Passo 1: Dados -->
+  <div class="card" id="passo1">
+    <h2><span class="step-num">1</span> Seus dados</h2>
+    <div class="campo">
+      <label for="nome">Nome completo</label>
+      <input type="text" id="nome" placeholder="Ex.: João da Silva">
+    </div>
+    <div class="campo">
+      <label for="whatsapp">WhatsApp (com DDD)</label>
+      <input type="tel" id="whatsapp" placeholder="Ex.: 65 99999-0000">
+    </div>
+    <div class="campo">
+      <label for="loja">Loja ou Conselho (opcional)</label>
+      <input type="text" id="loja" placeholder="Ex.: Loja Fraternidade n.º 1">
+    </div>
+  </div>
+
+  <!-- Passo 2: Opção -->
+  <div class="card" id="passo2">
+    <h2><span class="step-num">2</span> Sua opção</h2>
+    <div class="opcoes">
+      <div class="opcao" onclick="selecionar(this, 120)">
+        <input type="radio" name="opcao" value="120">
+        <div class="opcao-info">
+          <div class="opcao-titulo">Ágape da Jornada OSM</div>
+          <div class="opcao-desc">Almoço fraternal · 21/11/2026</div>
+        </div>
+        <div class="opcao-valor">R$ 120</div>
+      </div>
+      <div class="opcao" onclick="selecionar(this, 240)">
+        <input type="radio" name="opcao" value="240">
+        <div class="opcao-info">
+          <div class="opcao-titulo">Ágape OSM + RCC</div>
+          <div class="opcao-desc">OSM 21/11 + RCC 12/12/2026</div>
+        </div>
+        <div class="opcao-valor">R$ 240</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Passo 3: Resumo e PIX -->
+  <div class="card oculto" id="passo3">
+    <h2><span class="step-num">3</span> Resumo</h2>
+
+    <div class="aviso-centavos">
+      Para facilitar a identificação do seu pagamento no extrato do Tesoureiro, alguns centavos (no máximo R$&nbsp;0,99) são adicionados ao valor. O total exato aparece abaixo.
+    </div>
+
+    <div class="resumo-box">
+      <div class="resumo-linha">
+        <span id="resumo-opcao">—</span>
+        <span id="resumo-base">R$ 0,00</span>
+      </div>
+      <div class="resumo-linha">
+        <span>Identificação</span>
+        <span id="resumo-centavos">+ R$ 0,00</span>
+      </div>
+      <div class="resumo-linha resumo-total">
+        <span>Total</span>
+        <span id="resumo-total">R$ 0,00</span>
+      </div>
+    </div>
+
+    <button class="btn btn-primario" id="btn-gerar" onclick="gerarPix()">Gerar Pix</button>
+    <button class="btn btn-secundario" onclick="jaFizPix()">Já fiz o Pix</button>
+  </div>
+
+  <!-- Passo 4: Pagamento -->
+  <div class="card oculto" id="passo4">
+    <h2>Pagamento via Pix</h2>
+
+    <div class="pix-box">
+      <div class="pix-label">Valor a pagar</div>
+      <div class="pix-valor" id="pix-valor">R$ 0,00</div>
+    </div>
+
+    <div style="margin-bottom: 14px;">
+      <div class="pix-label" style="margin-bottom: 6px;">Chave Pix (aleatória) — copie e cole no app do banco</div>
+      <div class="pix-chave-box">
+        <code id="pix-chave">f5f765c7-b4d4-45db-893b-1e6382298539</code>
+        <button class="btn-copiar" onclick="copiar(this, 'pix-chave')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="info-pix" style="margin-bottom: 16px;">
+      <strong>Favorecido:</strong> Luciano de Oliveira Nunes<br>
+      <strong>Banco:</strong> Nubank<br>
+      <strong>Código do pedido:</strong> <span id="pix-codigo">—</span>
+    </div>
+
+    <button class="btn btn-sucesso" onclick="confirmarPagamento()">Já fiz o Pix</button>
+    <button class="btn btn-secundario" onclick="alterarPedido()">Alterar o pedido</button>
+  </div>
+
+  <!-- Passo 5: Confirmação -->
+  <div class="card oculto" id="passo5">
+    <div style="text-align: center; padding: 16px 0;">
+      <div style="font-size: 48px; margin-bottom: 8px;">&#10003;</div>
+      <h2 style="border: none; padding: 0; text-align: center;">Pagamento informado!</h2>
+      <p style="font-size: 14px; color: var(--cor-texto-sec); margin-top: 8px; line-height: 1.5;">
+        Seu pedido será confirmado assim que o Pix aparecer no extrato.<br>
+        Envie o comprovante no grupo para agilizar a conferência.
+      </p>
+      <div style="margin-top: 16px;">
+        <span class="badge-pago">Pedido registrado</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== SEÇÃO PROGRAMAÇÃO ===== -->
+<div id="secao-programacao" class="container secao-pagina oculto">
+  <div class="card">
+    <h2>Programação — OSM · 21/11/2026</h2>
+    <p style="font-size: 13px; color: var(--cor-texto-sec); margin-bottom: 14px;">
+      Presidente: Hugo Rodrigues Pfannemuller · 30 candidatos
+    </p>
+
+    <div class="prog-item">
+      <div class="prog-hora">05h50</div>
+      <div class="prog-desc">Chegada da Equipe Ritualística<br><span class="prog-nota">Preparação do templo e organização dos materiais</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">06h30</div>
+      <div class="prog-desc">Café da Manhã e Credenciamento<br><span class="prog-nota">Recepção e organização dos 30 candidatos</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">07h05</div>
+      <div class="prog-desc">Abertura do Conclave</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">07h20 – 08h30</div>
+      <div class="prog-desc"><span class="prog-grau">1.º Grau</span><br>Indução ao Monitor Secreto</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">08h30 – 08h45</div>
+      <div class="prog-desc prog-nota">Reconfiguração do Templo</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">08h45 – 10h05</div>
+      <div class="prog-desc"><span class="prog-grau">2.º Grau</span><br>Admissão como Príncipe da Ordem<br><span class="prog-nota">Monitores Secretos ➜ Príncipes</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">10h05 – 10h20</div>
+      <div class="prog-desc prog-nota">Reconfiguração do Templo — preparação para a Instalação</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">10h20 – 12h20</div>
+      <div class="prog-desc"><span class="prog-grau">3.º Grau</span><br>Instalação do Supremo Governante<br><span class="prog-nota">Príncipes ➜ Supremos Governantes Instalados</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">12h20 – 12h30</div>
+      <div class="prog-desc">Encerramento dos Trabalhos</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">12h30</div>
+      <div class="prog-desc"><strong>Almoço Fraternal</strong><br><span class="prog-nota">Celebração e confraternização entre os Irmãos</span></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 16px;">
+    <h2>Programação — RCC · 12/12/2026</h2>
+    <p style="font-size: 13px; color: var(--cor-texto-sec); margin-bottom: 14px;">
+      Presidente: Rogério Toledo Filho · 30 candidatos
+    </p>
+
+    <div class="prog-item">
+      <div class="prog-hora">07h00 – 07h45</div>
+      <div class="prog-desc">Recepção, credenciamento e café da manhã</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">08h00 – 09h45</div>
+      <div class="prog-desc"><span class="prog-grau">Ritual n.º 1</span><br>Instalação de Cavaleiro da Cruz Vermelha de Constantino</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">10h00 – 11h20</div>
+      <div class="prog-desc"><span class="prog-grau">Ritual n.º 2</span><br>Ordem do Santo Sepulcro</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">11h30 – 12h00</div>
+      <div class="prog-desc"><span class="prog-grau">Ritual n.º 2 (cont.)</span><br>Ordem de São João Evangelista — Terceiro Ponto</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">12h15 – 13h45</div>
+      <div class="prog-desc"><strong>Almoço fraternal</strong></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">14h00 – 15h25</div>
+      <div class="prog-desc"><span class="prog-grau">Ritual n.º 3</span><br>Colégio de Sacerdotes-Maçons — Consagração e Instalação dos Vice-Reis</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">15h40 – 16h50</div>
+      <div class="prog-desc"><span class="prog-grau">Ritual n.º 4</span><br>Senado de Príncipes-Maçons — Entronização dos Soberanos</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">17h10 – 17h40</div>
+      <div class="prog-desc">Retorno ao Conclave — Proclamações e Encerramento solene</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">17h40 – 18h15</div>
+      <div class="prog-desc">Fotografias oficiais e entrega de certificados</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">18h30 – 20h30</div>
+      <div class="prog-desc"><strong>Jantar de encerramento e confraternização</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Conclave Bom Jesus n.º 5 — Ordem do Monitor Secreto<br>
+  Jornadas OSM (21/11) e RCC (12/12) · 2026
+</div>
+
+<script>
+var PIX_CHAVE = 'f5f765c7-b4d4-45db-893b-1e6382298539';
+var PIX_FAVORECIDO = 'Luciano de Oliveira Nunes';
+var PIX_BANCO = 'Nubank';
+
+var valorBase = 0;
+var centavos = 0;
+var codigoPedido = '';
+
+// Sandro já pagou os 3 eventos
+var jaPagos = [
+  { nome: 'Sandro Gonçalves Delgado', opcao: 'OSM + RCC', valor: 360 }
+];
+
+function mostrarSecao(secao) {
+  document.getElementById('secao-agape').classList.toggle('oculto', secao !== 'agape');
+  document.getElementById('secao-programacao').classList.toggle('oculto', secao !== 'programacao');
+  document.querySelectorAll('.nav a').forEach(function(a) { a.classList.remove('ativo'); });
+  event.target.classList.add('ativo');
+  window.scrollTo(0, 0);
+}
+
+function selecionar(el, valor) {
+  document.querySelectorAll('.opcao').forEach(function(o) { o.classList.remove('selecionada'); });
+  el.classList.add('selecionada');
+  el.querySelector('input[type="radio"]').checked = true;
+  valorBase = valor;
+  atualizarResumo();
+  document.getElementById('passo3').classList.remove('oculto');
+}
+
+function hashNome(nome) {
+  var h = 0;
+  for (var i = 0; i < nome.length; i++) {
+    h = ((h << 5) - h) + nome.charCodeAt(i);
+    h = h & h;
+  }
+  return Math.abs(h);
+}
+
+function gerarCentavos() {
+  var nome = document.getElementById('nome').value.trim();
+  if (!nome) {
+    centavos = (Math.floor(Math.random() * 99) + 1) / 100;
+  } else {
+    var h = hashNome(nome);
+    centavos = ((h % 99) + 1) / 100;
+  }
+  return centavos;
+}
+
+function formatarValor(v) {
+  return 'R$ ' + v.toFixed(2).replace('.', ',');
+}
+
+function atualizarResumo() {
+  gerarCentavos();
+  var total = valorBase + centavos;
+  var opcaoTexto = valorBase === 120 ? 'Ágape OSM (21/11)' : 'Ágape OSM + RCC (21/11 + 12/12)';
+  document.getElementById('resumo-opcao').textContent = opcaoTexto;
+  document.getElementById('resumo-base').textContent = formatarValor(valorBase);
+  document.getElementById('resumo-centavos').textContent = '+ ' + formatarValor(centavos);
+  document.getElementById('resumo-total').textContent = formatarValor(total);
+}
+
+function gerarPix() {
+  var nome = document.getElementById('nome').value.trim();
+  if (!nome) { alert('Preencha seu nome completo.'); return; }
+
+  var total = valorBase + centavos;
+  codigoPedido = 'OSM' + Date.now().toString(36).toUpperCase().slice(-6);
+
+  document.getElementById('pix-valor').textContent = formatarValor(total);
+  document.getElementById('pix-codigo').textContent = codigoPedido;
+
+  document.getElementById('passo3').classList.add('oculto');
+  document.getElementById('passo4').classList.remove('oculto');
+  document.getElementById('passo4').scrollIntoView({ behavior: 'smooth' });
+
+  salvarPedido(nome, total);
+}
+
+function jaFizPix() {
+  var nome = document.getElementById('nome').value.trim();
+  if (!nome) { alert('Preencha seu nome completo.'); return; }
+  codigoPedido = 'OSM-JAPAGO';
+  salvarPedido(nome, valorBase + centavos);
+  document.getElementById('passo3').classList.add('oculto');
+  document.getElementById('passo5').classList.remove('oculto');
+  document.getElementById('passo5').scrollIntoView({ behavior: 'smooth' });
+}
+
+function confirmarPagamento() {
+  document.getElementById('passo4').classList.add('oculto');
+  document.getElementById('passo5').classList.remove('oculto');
+  document.getElementById('passo5').scrollIntoView({ behavior: 'smooth' });
+}
+
+function alterarPedido() {
+  document.getElementById('passo4').classList.add('oculto');
+  document.getElementById('passo3').classList.remove('oculto');
+  document.getElementById('passo2').scrollIntoView({ behavior: 'smooth' });
+}
+
+function copiar(btn, id) {
+  var texto = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(texto).then(function() {
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copiado');
+    setTimeout(function() {
+      btn.textContent = 'Copiar';
+      btn.classList.remove('copiado');
+    }, 2000);
+  });
+}
+
+function salvarPedido(nome, total) {
+  try {
+    var pedidos = JSON.parse(localStorage.getItem('osm_pedidos') || '[]');
+    pedidos.push({
+      nome: nome,
+      whatsapp: document.getElementById('whatsapp').value.trim(),
+      loja: document.getElementById('loja').value.trim(),
+      opcao: valorBase === 120 ? 'OSM' : 'OSM+RCC',
+      valor: total,
+      codigo: codigoPedido,
+      data: new Date().toISOString()
+    });
+    localStorage.setItem('osm_pedidos', JSON.stringify(pedidos));
+  } catch(e) {}
+}
+</script>
+</body>
+</html>
