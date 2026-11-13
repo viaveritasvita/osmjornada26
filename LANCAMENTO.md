@@ -18,7 +18,7 @@ Mesmo motor da Jornada AMD (`amdjornada26`), com a arte do Grande Conclave.
 
 ## Planilha
 Planilha própria do Ágape OSM (separada da AMD), com Apps Script publicado como aplicativo web.
-A senha do painel é a mesma do painel da AMD e fica só no Apps Script, nunca no GitHub.
+A senha do painel é própria da OSM (diferente da AMD) e fica só no Apps Script, nunca no GitHub.
 
 ## Conferência
 Cada pedido tem um código `OS…` e centavos únicos no valor (ex.: R$ 120,37).
