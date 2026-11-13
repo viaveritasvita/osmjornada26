@@ -2,86 +2,166 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ágape — Jornada OSM · Ordem do Monitor Secreto 2026</title>
+<meta name="description" content="Alimentação da Jornada da Ordem do Monitor Secreto (OSM), 21 de novembro de 2026, ou dos dois eventos OSM e RCC. Pagamento por Pix.">
+<meta name="theme-color" content="#5c0000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,500&display=swap" rel="stylesheet">
 <style>
 :root {
   --cor-primaria: #8B0000;
   --cor-primaria-escura: #5c0000;
+  --cor-primaria-clara: #b22222;
   --cor-fundo: #faf8f5;
+  --cor-fundo-quente: #f5f0ea;
   --cor-card: #ffffff;
   --cor-texto: #1a1a1a;
   --cor-texto-sec: #555;
   --cor-borda: #e0dcd6;
   --cor-destaque: #c0392b;
   --cor-sucesso: #27ae60;
-  --cor-aviso: #f39c12;
-  --sombra: 0 2px 12px rgba(0,0,0,.08);
+  --cor-ouro: #b8860b;
+  --sombra: 0 2px 16px rgba(0,0,0,.07);
+  --sombra-elev: 0 4px 24px rgba(0,0,0,.10);
+  --radius: 12px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: 'Source Serif 4', Georgia, serif;
   background: var(--cor-fundo); color: var(--cor-texto);
-  min-height: 100vh; padding-bottom: 60px;
+  min-height: 100vh;
 }
-.nav {
-  background: var(--cor-primaria); color: #fff;
-  display: flex; justify-content: center; gap: 24px;
-  padding: 12px 16px; font-size: 14px; letter-spacing: .5px;
+
+/* ===== NAV ===== */
+.site-nav {
+  display: flex; justify-content: center; gap: 4px;
+  padding: 10px 16px; background: var(--cor-primaria-escura);
 }
-.nav a { color: #fff; text-decoration: none; opacity: .8; transition: opacity .2s; }
-.nav a:hover, .nav a.ativo { opacity: 1; font-weight: 600; }
+.site-nav a {
+  color: #fff; text-decoration: none;
+  font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600;
+  letter-spacing: .8px; text-transform: uppercase;
+  padding: 7px 20px; border-radius: 20px;
+  opacity: .7; transition: all .25s;
+}
+.site-nav a:hover { opacity: 1; }
+.site-nav a.ativo {
+  opacity: 1; background: rgba(255,255,255,.15);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
+}
+
+/* ===== MASTHEAD ===== */
 .masthead {
-  text-align: center; padding: 32px 16px 24px;
-  background: linear-gradient(180deg, var(--cor-primaria) 0%, var(--cor-primaria-escura) 100%);
+  text-align: center;
+  padding: 36px 16px 28px;
+  background: linear-gradient(170deg, var(--cor-primaria) 0%, var(--cor-primaria-escura) 100%);
   color: #fff;
+  position: relative; overflow: hidden;
+}
+.masthead::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.masthead-sigla {
+  display: inline-block;
+  font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+  margin-bottom: 6px;
 }
 .masthead h1 {
-  font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700;
-  margin-bottom: 4px; letter-spacing: 1px;
+  font-family: 'Cinzel', serif; font-size: 26px; font-weight: 700;
+  letter-spacing: 1px; line-height: 1.2;
+  margin-bottom: 12px;
 }
-.masthead .sub { font-size: 15px; opacity: .85; margin-bottom: 8px; }
-.masthead .data { font-size: 13px; opacity: .7; letter-spacing: .5px; }
-.container { max-width: 520px; margin: 0 auto; padding: 0 16px; }
+.masthead h1 .accent { font-weight: 700; }
+.date-plaque {
+  display: inline-block;
+  font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600;
+  letter-spacing: .5px;
+  padding: 6px 22px;
+  border: 1.5px solid rgba(255,255,255,.35);
+  border-radius: 4px;
+  background: rgba(255,255,255,.08);
+  margin-bottom: 10px;
+}
+.masthead-sub {
+  font-size: 14px; font-weight: 500;
+  opacity: .65; letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+.hairline {
+  border: none; height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--cor-borda) 30%, var(--cor-borda) 70%, transparent 100%);
+  margin: 0;
+}
+
+/* ===== CONTAINER ===== */
+.container { max-width: 520px; margin: 0 auto; padding: 0 16px 80px; }
+
+/* ===== LEAD ===== */
+.rf-lead {
+  text-align: center; font-size: 14px; color: var(--cor-texto-sec);
+  padding: 20px 8px 4px; line-height: 1.6;
+}
+.rf-lead strong { color: var(--cor-texto); }
+
+/* ===== CARD ===== */
 .card {
   background: var(--cor-card); border: 1px solid var(--cor-borda);
-  border-radius: 12px; padding: 24px; margin-top: 20px;
-  box-shadow: var(--sombra);
+  border-radius: var(--radius); padding: 24px;
+  margin-top: 18px; box-shadow: var(--sombra);
 }
-.card h2 {
-  font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700;
-  color: var(--cor-primaria); margin-bottom: 16px;
-  padding-bottom: 8px; border-bottom: 1px solid var(--cor-borda);
+
+/* ===== STEP ===== */
+.step-head {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--cor-borda);
 }
 .step-num {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 24px; height: 24px; border-radius: 50%;
+  width: 26px; height: 26px; border-radius: 50%;
   background: var(--cor-primaria); color: #fff;
-  font-size: 13px; font-weight: 700; margin-right: 8px;
+  font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700;
+  flex-shrink: 0;
 }
-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--cor-texto); }
+.step-head h2 {
+  font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700;
+  color: var(--cor-primaria); margin: 0; padding: 0; border: none;
+}
+
+/* ===== FIELDS ===== */
+.campo { margin-bottom: 14px; }
+label.field-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--cor-texto); }
 input[type="text"], input[type="tel"] {
-  width: 100%; padding: 12px; border: 1px solid var(--cor-borda);
+  width: 100%; padding: 12px 14px; border: 1px solid var(--cor-borda);
   border-radius: 8px; font-size: 15px; font-family: inherit;
   background: var(--cor-fundo); transition: border-color .2s;
 }
-input:focus { outline: none; border-color: var(--cor-primaria); }
-.campo { margin-bottom: 14px; }
+input:focus { outline: none; border-color: var(--cor-primaria); box-shadow: 0 0 0 3px rgba(139,0,0,.08); }
+
+/* ===== OPTIONS ===== */
 .opcoes { display: flex; flex-direction: column; gap: 10px; }
 .opcao {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 14px; border: 2px solid var(--cor-borda);
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px; border: 2px solid var(--cor-borda);
   border-radius: 10px; cursor: pointer; transition: all .2s;
+  background: var(--cor-card);
 }
-.opcao:hover { border-color: var(--cor-primaria); }
+.opcao:hover { border-color: var(--cor-primaria); box-shadow: 0 2px 8px rgba(139,0,0,.06); }
 .opcao.selecionada { border-color: var(--cor-primaria); background: #fdf0f0; }
-.opcao input[type="radio"] { margin-top: 3px; accent-color: var(--cor-primaria); }
-.opcao-info { flex: 1; }
+.opcao input[type="radio"] { margin: 0; accent-color: var(--cor-primaria); width: 18px; height: 18px; flex-shrink: 0; }
+.opcao-info { flex: 1; min-width: 0; }
 .opcao-titulo { font-weight: 600; font-size: 15px; }
 .opcao-desc { font-size: 13px; color: var(--cor-texto-sec); margin-top: 2px; }
-.opcao-valor { font-family: 'Cinzel', serif; font-weight: 700; font-size: 18px; color: var(--cor-primaria); white-space: nowrap; }
+.opcao-valor { font-family: 'Cinzel', serif; font-weight: 700; font-size: 18px; color: var(--cor-primaria); white-space: nowrap; flex-shrink: 0; }
+
+/* ===== RESUMO ===== */
 .resumo-box {
   background: var(--cor-fundo); border: 1px solid var(--cor-borda);
   border-radius: 8px; padding: 14px; margin-bottom: 14px;
@@ -91,9 +171,11 @@ input:focus { outline: none; border-color: var(--cor-primaria); }
 .aviso-centavos {
   font-size: 12px; color: var(--cor-texto-sec);
   background: #fff8e1; border: 1px solid #ffe082;
-  border-radius: 6px; padding: 10px; margin-bottom: 14px;
+  border-radius: 8px; padding: 10px 12px; margin-bottom: 14px;
   line-height: 1.5;
 }
+
+/* ===== BUTTONS ===== */
 .btn {
   display: block; width: 100%; padding: 14px;
   border: none; border-radius: 10px;
@@ -107,15 +189,17 @@ input:focus { outline: none; border-color: var(--cor-primaria); }
 .btn-secundario:hover { background: #fdf0f0; }
 .btn-sucesso { background: var(--cor-sucesso); color: #fff; }
 .btn-sucesso:hover { background: #219a52; }
+
+/* ===== PIX ===== */
 .pix-box {
   background: #f0fdf4; border: 2px solid var(--cor-sucesso);
-  border-radius: 10px; padding: 18px; text-align: center; margin-bottom: 14px;
+  border-radius: 10px; padding: 20px; text-align: center; margin-bottom: 16px;
 }
 .pix-label { font-size: 12px; color: var(--cor-texto-sec); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-.pix-valor { font-family: 'Cinzel', serif; font-size: 28px; font-weight: 700; color: var(--cor-primaria); }
+.pix-valor { font-family: 'Cinzel', serif; font-size: 30px; font-weight: 700; color: var(--cor-primaria); }
 .pix-chave-box {
   background: var(--cor-fundo); border: 1px solid var(--cor-borda);
-  border-radius: 8px; padding: 12px; margin-bottom: 10px;
+  border-radius: 8px; padding: 12px; margin-bottom: 12px;
   display: flex; align-items: center; gap: 8px;
 }
 .pix-chave-box code {
@@ -129,78 +213,111 @@ input:focus { outline: none; border-color: var(--cor-primaria); }
 }
 .btn-copiar:hover { background: var(--cor-fundo); }
 .btn-copiar.copiado { background: var(--cor-sucesso); color: #fff; border-color: var(--cor-sucesso); }
-.info-pix { font-size: 13px; color: var(--cor-texto-sec); line-height: 1.5; }
+.info-pix { font-size: 13px; color: var(--cor-texto-sec); line-height: 1.6; }
 .info-pix strong { color: var(--cor-texto); }
 .oculto { display: none !important; }
-.footer {
-  text-align: center; padding: 24px 16px;
-  font-size: 12px; color: var(--cor-texto-sec);
+
+/* ===== DONE ===== */
+.done-mark { font-size: 52px; color: var(--cor-sucesso); margin-bottom: 4px; }
+.badge-pago {
+  display: inline-block; background: var(--cor-sucesso); color: #fff;
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: 4px; text-transform: uppercase; letter-spacing: .5px;
 }
-/* Programação */
+
+/* ===== PROGRAMAÇÃO ===== */
+.prog-card { margin-top: 18px; }
+.prog-header {
+  font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700;
+  color: var(--cor-primaria);
+  padding-bottom: 10px; border-bottom: 1px solid var(--cor-borda);
+  margin-bottom: 4px;
+}
+.prog-sub {
+  font-size: 13px; color: var(--cor-texto-sec); margin-bottom: 16px; padding-top: 8px;
+}
 .prog-item {
-  display: flex; gap: 12px; padding: 10px 0;
-  border-bottom: 1px solid var(--cor-borda);
+  display: flex; gap: 14px; padding: 11px 0;
+  border-bottom: 1px solid #f0ece6;
 }
 .prog-item:last-child { border-bottom: none; }
 .prog-hora {
   font-family: ui-monospace, monospace; font-size: 13px;
   color: var(--cor-primaria); font-weight: 600;
-  min-width: 90px; white-space: nowrap;
+  min-width: 95px; white-space: nowrap;
 }
-.prog-desc { font-size: 14px; line-height: 1.4; }
+.prog-desc { font-size: 14px; line-height: 1.45; }
 .prog-grau { font-weight: 600; color: var(--cor-primaria); }
 .prog-nota { font-size: 12px; color: var(--cor-texto-sec); font-style: italic; }
-.badge-pago {
-  display: inline-block; background: var(--cor-sucesso); color: #fff;
-  font-size: 11px; font-weight: 700; padding: 2px 8px;
-  border-radius: 4px; text-transform: uppercase; letter-spacing: .5px;
+.prog-break {
+  padding: 14px 0; text-align: center;
+  font-size: 13px; color: var(--cor-texto-sec);
+  border-bottom: 1px solid #f0ece6;
 }
-.secao-pagina { }
-#secao-agape, #secao-programacao { }
+
+/* ===== LINK BACK ===== */
+.link-back {
+  display: block; text-align: center;
+  margin-top: 20px; padding: 12px;
+  font-size: 14px; color: var(--cor-primaria);
+  text-decoration: none; font-weight: 600;
+}
+.link-back:hover { text-decoration: underline; }
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center; padding: 28px 16px 24px;
+  font-size: 12px; color: var(--cor-texto-sec);
+  border-top: 1px solid var(--cor-borda);
+  line-height: 1.6;
+}
 </style>
 </head>
 <body>
 
-<nav class="nav">
+<nav class="site-nav">
   <a href="#" class="ativo" onclick="mostrarSecao('agape'); return false;">Ágape</a>
   <a href="#" onclick="mostrarSecao('programacao'); return false;">Programação</a>
 </nav>
 
-<div class="masthead">
-  <h1>ORDEM DO MONITOR SECRETO</h1>
-  <div class="sub">Conclave Bom Jesus n.º 5</div>
-  <div class="data">Jornada de Graus · 21 de novembro de 2026 · Cuiabá</div>
-</div>
+<header class="masthead">
+  <div class="masthead-sigla">OSM</div>
+  <h1>Ágape da <span class="accent">Jornada</span></h1>
+  <div class="date-plaque">21 de novembro de 2026</div>
+  <p class="masthead-sub">Ordem do Monitor Secreto</p>
+</header>
+
+<hr class="hairline" aria-hidden="true">
 
 <!-- ===== SEÇÃO ÁGAPE ===== -->
 <div id="secao-agape" class="container secao-pagina">
 
+  <p class="rf-lead">
+    Escolha a sua opção de alimentação. O valor sai na hora e o pagamento é por <strong>Pix</strong>.
+  </p>
+
   <!-- Passo 1: Dados -->
   <div class="card" id="passo1">
-    <h2><span class="step-num">1</span> Seus dados</h2>
+    <div class="step-head"><span class="step-num">1</span><h2>Seus dados</h2></div>
     <div class="campo">
-      <label for="nome">Nome completo</label>
-      <input type="text" id="nome" placeholder="Ex.: João da Silva">
+      <label class="field-label" for="nome">Nome completo</label>
+      <input type="text" id="nome" autocomplete="name" placeholder="Ex.: João da Silva">
     </div>
     <div class="campo">
-      <label for="whatsapp">WhatsApp (com DDD)</label>
-      <input type="tel" id="whatsapp" placeholder="Ex.: 65 99999-0000">
-    </div>
-    <div class="campo">
-      <label for="loja">Loja ou Conselho (opcional)</label>
-      <input type="text" id="loja" placeholder="Ex.: Loja Fraternidade n.º 1">
+      <label class="field-label" for="whatsapp">WhatsApp (com DDD)</label>
+      <input type="tel" id="whatsapp" autocomplete="tel" inputmode="tel" placeholder="(65) 99999-0000">
     </div>
   </div>
 
   <!-- Passo 2: Opção -->
   <div class="card" id="passo2">
-    <h2><span class="step-num">2</span> Sua opção</h2>
+    <div class="step-head"><span class="step-num">2</span><h2>Sua opção</h2></div>
     <div class="opcoes">
       <div class="opcao" onclick="selecionar(this, 120)">
         <input type="radio" name="opcao" value="120">
         <div class="opcao-info">
           <div class="opcao-titulo">Ágape da Jornada OSM</div>
-          <div class="opcao-desc">Almoço fraternal · 21/11/2026</div>
+          <div class="opcao-desc">Café da manhã e almoço fraternal · 21/11/2026</div>
         </div>
         <div class="opcao-valor">R$ 120</div>
       </div>
@@ -217,10 +334,10 @@ input:focus { outline: none; border-color: var(--cor-primaria); }
 
   <!-- Passo 3: Resumo e PIX -->
   <div class="card oculto" id="passo3">
-    <h2><span class="step-num">3</span> Resumo</h2>
+    <div class="step-head"><span class="step-num">3</span><h2>Resumo</h2></div>
 
     <div class="aviso-centavos">
-      Para facilitar a identificação do seu pagamento no extrato do Tesoureiro, alguns centavos (no máximo R$&nbsp;0,99) são adicionados ao valor. O total exato aparece abaixo.
+      Ao gerar o Pix, somamos alguns centavos (no máximo R$&nbsp;0,99) só para reconhecer o seu pagamento no extrato.
     </div>
 
     <div class="resumo-box">
@@ -244,7 +361,7 @@ input:focus { outline: none; border-color: var(--cor-primaria); }
 
   <!-- Passo 4: Pagamento -->
   <div class="card oculto" id="passo4">
-    <h2>Pagamento via Pix</h2>
+    <div class="step-head"><h2 style="margin:0;padding:0;border:none;">Pagamento via Pix</h2></div>
 
     <div class="pix-box">
       <div class="pix-label">Valor a pagar</div>
@@ -271,10 +388,10 @@ input:focus { outline: none; border-color: var(--cor-primaria); }
 
   <!-- Passo 5: Confirmação -->
   <div class="card oculto" id="passo5">
-    <div style="text-align: center; padding: 16px 0;">
-      <div style="font-size: 48px; margin-bottom: 8px;">&#10003;</div>
-      <h2 style="border: none; padding: 0; text-align: center;">Pagamento informado!</h2>
-      <p style="font-size: 14px; color: var(--cor-texto-sec); margin-top: 8px; line-height: 1.5;">
+    <div style="text-align: center; padding: 20px 0;">
+      <div class="done-mark">&#10003;</div>
+      <h2 style="font-family:'Cinzel',serif;font-size:18px;color:var(--cor-primaria);margin-bottom:8px;">Pagamento informado</h2>
+      <p style="font-size: 14px; color: var(--cor-texto-sec); line-height: 1.5;">
         Seu pedido será confirmado assim que o Pix aparecer no extrato.<br>
         Envie o comprovante no grupo para agilizar a conferência.
       </p>
@@ -282,17 +399,18 @@ input:focus { outline: none; border-color: var(--cor-primaria); }
         <span class="badge-pago">Pedido registrado</span>
       </div>
     </div>
+    <a class="link-back" href="#" onclick="mostrarSecao('programacao'); return false;">← Ver a programação da Jornada</a>
   </div>
 
+  <a class="link-back" href="#" id="link-programacao" onclick="mostrarSecao('programacao'); return false;">← Ver a programação da Jornada</a>
 </div>
 
 <!-- ===== SEÇÃO PROGRAMAÇÃO ===== -->
 <div id="secao-programacao" class="container secao-pagina oculto">
-  <div class="card">
-    <h2>Programação — OSM · 21/11/2026</h2>
-    <p style="font-size: 13px; color: var(--cor-texto-sec); margin-bottom: 14px;">
-      Presidente: Hugo Rodrigues Pfannemuller · 30 candidatos
-    </p>
+
+  <div class="card prog-card">
+    <div class="prog-header">Programação — OSM · 21/11/2026</div>
+    <p class="prog-sub">Presidente: Hugo Rodrigues Pfannemuller · 26 membros</p>
 
     <div class="prog-item">
       <div class="prog-hora">05h50</div>
@@ -300,7 +418,7 @@ input:focus { outline: none; border-color: var(--cor-primaria); }
     </div>
     <div class="prog-item">
       <div class="prog-hora">06h30</div>
-      <div class="prog-desc">Café da Manhã e Credenciamento<br><span class="prog-nota">Recepção e organização dos 30 candidatos</span></div>
+      <div class="prog-desc">Café da Manhã e Credenciamento<br><span class="prog-nota">Recepção e organização dos membros</span></div>
     </div>
     <div class="prog-item">
       <div class="prog-hora">07h05</div>
@@ -316,7 +434,7 @@ input:focus { outline: none; border-color: var(--cor-primaria); }
     </div>
     <div class="prog-item">
       <div class="prog-hora">08h45 – 10h05</div>
-      <div class="prog-desc"><span class="prog-grau">2.º Grau</span><br>Admissão como Príncipe da Ordem<br><span class="prog-nota">Monitores Secretos ➜ Príncipes</span></div>
+      <div class="prog-desc"><span class="prog-grau">2.º Grau</span><br>Admissão como Príncipe da Ordem<br><span class="prog-nota">Monitores Secretos → Príncipes</span></div>
     </div>
     <div class="prog-item">
       <div class="prog-hora">10h05 – 10h20</div>
@@ -324,23 +442,25 @@ input:focus { outline: none; border-color: var(--cor-primaria); }
     </div>
     <div class="prog-item">
       <div class="prog-hora">10h20 – 12h20</div>
-      <div class="prog-desc"><span class="prog-grau">3.º Grau</span><br>Instalação do Supremo Governante<br><span class="prog-nota">Príncipes ➜ Supremos Governantes Instalados</span></div>
+      <div class="prog-desc"><span class="prog-grau">3.º Grau</span><br>Instalação do Supremo Governante<br><span class="prog-nota">Príncipes → Supremos Governantes Instalados</span></div>
     </div>
     <div class="prog-item">
       <div class="prog-hora">12h20 – 12h30</div>
       <div class="prog-desc">Encerramento dos Trabalhos</div>
     </div>
     <div class="prog-item">
-      <div class="prog-hora">12h30</div>
+      <div class="prog-hora">12h30 – 13h00</div>
+      <div class="prog-desc">Fotografias oficiais e entrega de certificados</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-hora">13h00</div>
       <div class="prog-desc"><strong>Almoço Fraternal</strong><br><span class="prog-nota">Celebração e confraternização entre os Irmãos</span></div>
     </div>
   </div>
 
-  <div class="card" style="margin-top: 16px;">
-    <h2>Programação — RCC · 12/12/2026</h2>
-    <p style="font-size: 13px; color: var(--cor-texto-sec); margin-bottom: 14px;">
-      Presidente: Rogério Toledo Filho · 30 candidatos
-    </p>
+  <div class="card prog-card">
+    <div class="prog-header">Programação — RCC · 12/12/2026</div>
+    <p class="prog-sub">Presidente: Rogério Toledo Filho · 26 membros</p>
 
     <div class="prog-item">
       <div class="prog-hora">07h00 – 07h45</div>
@@ -383,12 +503,14 @@ input:focus { outline: none; border-color: var(--cor-primaria); }
       <div class="prog-desc"><strong>Jantar de encerramento e confraternização</strong></div>
     </div>
   </div>
+
+  <a class="link-back" href="#" onclick="mostrarSecao('agape'); return false;">← Garantir o seu ágape</a>
 </div>
 
-<div class="footer">
+<footer class="footer">
   Conclave Bom Jesus n.º 5 — Ordem do Monitor Secreto<br>
   Jornadas OSM (21/11) e RCC (12/12) · 2026
-</div>
+</footer>
 
 <script>
 var PIX_CHAVE = 'f5f765c7-b4d4-45db-893b-1e6382298539';
@@ -399,7 +521,6 @@ var valorBase = 0;
 var centavos = 0;
 var codigoPedido = '';
 
-// Sandro já pagou os 3 eventos
 var jaPagos = [
   { nome: 'Sandro Gonçalves Delgado', opcao: 'OSM + RCC', valor: 360 }
 ];
@@ -407,8 +528,9 @@ var jaPagos = [
 function mostrarSecao(secao) {
   document.getElementById('secao-agape').classList.toggle('oculto', secao !== 'agape');
   document.getElementById('secao-programacao').classList.toggle('oculto', secao !== 'programacao');
-  document.querySelectorAll('.nav a').forEach(function(a) { a.classList.remove('ativo'); });
-  event.target.classList.add('ativo');
+  document.querySelectorAll('.site-nav a').forEach(function(a) { a.classList.remove('ativo'); });
+  if (secao === 'agape') document.querySelectorAll('.site-nav a')[0].classList.add('ativo');
+  else document.querySelectorAll('.site-nav a')[1].classList.add('ativo');
   window.scrollTo(0, 0);
 }
 
@@ -512,7 +634,6 @@ function salvarPedido(nome, total) {
     pedidos.push({
       nome: nome,
       whatsapp: document.getElementById('whatsapp').value.trim(),
-      loja: document.getElementById('loja').value.trim(),
       opcao: valorBase === 120 ? 'OSM' : 'OSM+RCC',
       valor: total,
       codigo: codigoPedido,
